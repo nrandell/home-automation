@@ -1,0 +1,5 @@
+substitutions:
+  devicename: garage-roof
+  fullname: Garage roof
+
+<<: !include esp32_bme280_bh1750.yaml

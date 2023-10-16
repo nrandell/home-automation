@@ -1,0 +1,5 @@
+substitutions:
+  devicename: lounge
+  fullname: Lounge
+
+<<: !include esp32_bme280_bh1750.yaml

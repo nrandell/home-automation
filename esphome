@@ -1,0 +1,6 @@
+#! /bin/bash
+
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+RUN_DIR=`pwd`
+
+docker run --rm -v $RUN_DIR:/config -v $SCRIPT_DIR/secrets.yaml:/config/secrets.yaml -it ghcr.io/esphome/esphome "$@"

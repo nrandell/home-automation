@@ -1,0 +1,5 @@
+substitutions:
+  devicename: gazebo
+  fullname: Gazebo
+
+<<: !include esp32_bme280_bh1750.yaml
