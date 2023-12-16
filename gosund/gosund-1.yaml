@@ -1,0 +1,6 @@
+substitutions:
+  devicename: gosund-1
+  fullname: Gosund 1
+  restoreMode: RESTORE_DEFAULT_ON
+
+<<: !include gosund.yaml

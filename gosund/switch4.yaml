@@ -1,0 +1,6 @@
+substitutions:
+  devicename: switch4
+  fullname: Switch 4
+  restoreMode: RESTORE_DEFAULT_ON
+
+<<: !include gosund.yaml

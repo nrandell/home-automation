@@ -1,0 +1,6 @@
+substitutions:
+  devicename: switch3
+  fullname: Switch 3
+  restoreMode: RESTORE_DEFAULT_ON
+
+<<: !include gosund.yaml

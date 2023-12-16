@@ -1,0 +1,6 @@
+substitutions:
+  devicename: switch8
+  fullname: Switch 8
+  restoreMode: RESTORE_DEFAULT_ON
+
+<<: !include gosund.yaml

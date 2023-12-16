@@ -1,0 +1,6 @@
+substitutions:
+  devicename: switch6
+  fullname: Switch 6
+  restoreMode: RESTORE_DEFAULT_ON
+
+<<: !include gosund.yaml

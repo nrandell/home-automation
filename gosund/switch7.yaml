@@ -1,0 +1,6 @@
+substitutions:
+  devicename: switch7
+  fullname: Switch 7
+  restoreMode: RESTORE_DEFAULT_ON
+
+<<: !include gosund.yaml
