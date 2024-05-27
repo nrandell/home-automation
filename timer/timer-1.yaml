@@ -1,0 +1,6 @@
+substitutions:
+  devicename: timer-1
+  fullname: Timer 1
+  restoreMode: RESTORE_DEFAULT_OFF
+
+<<: !include timer.yaml

@@ -1,5 +1,5 @@
 substitutions:
-  devicename: lounge
-  fullname: Lounge
+  devicename: roof
+  fullname: Roof
 
 <<: !include esp32_bme280_bh1750.yaml

@@ -1,0 +1,5 @@
+substitutions:
+  name: ble
+  friendly_name: Bluetooth LE
+
+<<: !include esp32-devkitc-v4.yaml

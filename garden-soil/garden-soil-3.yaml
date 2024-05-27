@@ -1,0 +1,6 @@
+substitutions:
+  devicename: garden-soil-3
+  fullname: Garden Soil 3
+  deepSleep: 900s
+
+<<: !include sensor.yaml

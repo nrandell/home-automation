@@ -1,0 +1,7 @@
+esp32:
+  board: firebeetle32
+  framework:
+    type: esp-idf
+
+
+<<: !include core.yaml

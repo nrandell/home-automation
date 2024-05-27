@@ -1,0 +1,54 @@
+Codes
+
+Up
+
+
+
+12:20:20][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0009 0181 06C3
+[12:20:20][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0180 06C3
+[12:20:20][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0181 06C3
+[12:20:20][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0180 06C3
+[12:20:20][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0181 06C3
+[12:20:20][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0180 06C3
+[12:20:20][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0181 06C3
+[12:20:20][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0180 06C3
+[12:20:21][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0181 06C3
+[12:20:21][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0180 06C3
+[12:20:21][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0181 06C3
+[12:20:21][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0049 0181 06C3
+[12:20:21][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0180 06C3
+[12:20:21][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0181 06C3
+[12:20:21][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0180 06C3
+[12:20:23][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0181 06C3
+[12:20:23][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0180 06C3
+[12:20:24][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0181 06C3
+
+
+Stop
+[12:20:35][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0181 06C3
+[12:20:35][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 000A 0181 06C3
+[12:20:35][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0180 06C3
+[12:20:35][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0181 06C3
+[12:20:35][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0180 06C3
+[12:20:35][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0181 06C3
+[12:20:35][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0049 0181 06C3
+[12:20:35][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0180 06C3
+[12:20:35][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0181 06C3
+[12:20:35][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0180 06C3
+
+
+Down
+
+[12:20:54][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0181 06C3
+[12:20:54][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0008 0181 06C3
+[12:20:54][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0180 06C3
+[12:20:54][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0181 06C3
+[12:20:54][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0180 06C3
+[12:20:55][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0181 06C3
+[12:20:55][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0180 06C3
+[12:20:55][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0181 06C3
+[12:20:55][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0180 06C3
+[12:20:55][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0181 06C3
+[12:20:55][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0180 06C3
+[12:20:55][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0181 06C3
+[12:20:55][I][remote.pronto:237]: Received Pronto: data=0000 006D 0001 0000 0049 0181 06C3

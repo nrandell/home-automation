@@ -1,0 +1,5 @@
+substitutions:
+  devicename: watering2
+  fullname: Watering 2
+
+<<: !include shared.yaml

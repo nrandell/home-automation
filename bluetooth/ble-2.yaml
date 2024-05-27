@@ -1,0 +1,5 @@
+substitutions:
+  name: ble-2
+  friendly_name: Bluetooth LE 2
+
+<<: !include esp32-c3-devkitm-1.yaml

@@ -1,0 +1,179 @@
+esphome:
+  name: $devicename
+  on_boot:
+    then:
+      - output.turn_on: switch_ldo2_power
+      - output.turn_on: switch_led_power
+
+  on_shutdown:
+    then:
+      - output.turn_off: switch_ldo2_power
+      - output.turn_off: switch_led_power
+
+external_components:
+  # - source: /source/HomeAutomation/dallasng/components
+  - source: github://nrandell/dallasng
+  # - source: /source/HomeAutomation/dallasng/components
+  # - source: github://nrandell/dallasng
+
+  # - source:
+  #     type: local
+  #     path: /source/opensource/esphome/esphome/components
+  #   components: [logger, adc]
+
+esp32:
+  board: um_feathers3
+  # framework:
+  #   type: esp-idf
+  # variant: esp32s3
+  # framework:
+  #   type: arduino
+  #   version: 2.0.3
+  #   platform_version: 4.3.0
+
+output:
+  - platform: gpio
+    id: switch_ldo2_power
+    pin:
+      number: 39
+      mode:
+        output: true
+  - platform: gpio
+    id: switch_led_power
+    pin:
+      number: 13
+      mode:
+        output: true
+
+wifi:
+  domain: .home
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+ota:
+  password: !secret ota_password
+
+logger:
+  level: verbose
+
+deep_sleep:
+  id: deep_sleep_1
+  sleep_duration: ${deepSleep}
+  run_duration: 30s
+
+mqtt:
+  broker: 192.168.100.5
+  topic_prefix: esphome/${devicename}
+  birth_message:
+    topic: esphome/${devicename}/birth_status
+    payload: "online"
+
+  will_message:
+    topic: esphome/${devicename}/will_status
+    payload: "offline"
+
+  on_message:
+    - topic: esphome/${devicename}/ota_mode
+      then:
+        - deep_sleep.prevent: deep_sleep_1
+        - lambda: |-
+            ESP_LOGI("main", "Preventing deep sleep");
+
+    - topic: esphome/${devicename}/sleep_mode
+      then:
+        - deep_sleep.enter: deep_sleep_1
+        - lambda: |-
+            ESP_LOGI("main", "Entering deep sleep");
+
+dallasng:
+  - pin: GPIO6
+    update_interval: 3s
+
+sensor:
+  - platform: dallasng
+    expire_after: 1000s
+    name: ${fullname} Temperature
+    index: 0
+    resolution: 12
+    filters:
+      - filter_out: NAN
+
+  - platform: uptime
+    expire_after: 1000s
+    name: ${fullname} Uptime
+    update_interval: 10s
+
+  - platform: wifi_signal
+    expire_after: 1000s
+    name: ${fullname} Wifi Signal
+    update_interval: 10s
+
+  - platform: adc
+    expire_after: 1000s
+    update_interval: 10s
+    pin: GPIO2
+    name: ${fullname} VBAT
+    attenuation: 2.5db
+    filters:
+      - lambda: |-
+          ESP_LOGD("vbat", "Sensor value is: %f", x);
+          return (442.0f + 160.0f) / 160.0f * x;
+
+  - platform: adc
+    expire_after: 1000s
+    update_interval: 5s
+    pin: GPIO1
+    name: ${fullname} VSOLAR
+    attenuation: 2.5db
+    filters:
+      - lambda: |-
+          ESP_LOGD("vsolar", "Sensor value is: %f", x);
+          return (300.0f + 100.0f) / 100.0f * x;
+
+  - platform: adc
+    expire_after: 1000s
+    update_interval: 10s
+    pin: GPIO4
+    name: ${fullname} Light
+    attenuation: 11db
+    filters:
+      - lambda: |-
+          ESP_LOGD("light", "Sensor value is: %f", x);
+          return x;
+
+  # https://www.vegetronix.com/Products/VH400/
+  - platform: adc
+    expire_after: 1000s
+    pin: GPIO7
+    name: ${fullname} Moisture
+    update_interval: 3s
+    attenuation: 11db
+    unit_of_measurement: "%"
+    icon: "mdi:water"
+    accuracy_decimals: 0
+    filters:
+      - sliding_window_moving_average:
+          window_size: 2
+          send_every: 1
+          send_first_at: 1
+      - lambda: |-
+          ESP_LOGD("moisture", "Sensor value is: %f", x);
+          if (x <= 0.1) {
+            return 0;
+          }
+          if (x < 1.1) {
+            return (10.0 * x) - 1.0;
+          }
+          if (x < 1.3) {
+            return (25.0 * x) - 17.5;
+          }
+          if (x < 1.82) {
+            return (48.08 * x) - 47.5;
+          }
+          if (x < 2.2) {
+            return (26.32 * x) - 7.89;
+          }
+          if (x <= 3.0) {
+            return (62.5 * x) - 87.5;
+          }
+          return 100;

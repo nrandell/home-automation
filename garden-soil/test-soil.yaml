@@ -1,0 +1,6 @@
+substitutions:
+  devicename: test-soil
+  fullname: Test Soil
+  deepSleep: 900s
+
+<<: !include sensor.yaml

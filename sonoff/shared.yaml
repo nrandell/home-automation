@@ -1,0 +1,82 @@
+esphome:
+  name: $devicename
+
+esp8266:
+  board: esp8285
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  domain: .home
+
+api:
+  encryption:
+    key: !secret key
+
+logger:
+
+ota:
+  password: !secret ota_password
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO0
+      mode:
+        input: true
+        pullup: true
+      inverted: true
+    name: "${fullname} Button 1"
+  - platform: gpio
+    pin:
+      number: GPIO9
+      mode:
+        input: true
+        pullup: true
+      inverted: true
+    name: "${fullname} Button 2"
+  - platform: gpio
+    pin:
+      number: GPIO10
+      mode:
+        input: true
+        pullup: true
+      inverted: true
+    name: "${fullname} Button 3"
+  - platform: gpio
+    pin:
+      number: GPIO14
+      mode:
+        input: true
+        pullup: true
+      inverted: true
+    name: "${fullname} Button 4"
+  - platform: status
+    name: "${fullname} Status"
+
+switch:
+  - platform: gpio
+    name: "${fullname} Relay 1"
+    pin: GPIO12
+  - platform: gpio
+    name: "${fullname} Relay 2"
+    pin: GPIO5
+  - platform: gpio
+    name: "${fullname} Relay 3"
+    pin: GPIO4
+  - platform: gpio
+    name: "${fullname} Relay 4"
+    pin: GPIO15
+
+output:
+  # Register the blue LED as a dimmable output ....
+  - platform: esp8266_pwm
+    id: blue_led
+    pin: GPIO13
+    inverted: true
+
+light:
+  # ... and then make a light out of it.
+  - platform: monochromatic
+    name: "${fullname} Blue LED"
+    output: blue_led

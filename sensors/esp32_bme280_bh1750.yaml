@@ -1,7 +1,11 @@
 esphome:
   name: $devicename
-  platform: ESP32
+  friendly_name: $fullname
+
+esp32:
   board: wemos_d1_mini32
+  framework:
+    type: esp-idf
 
 wifi:
   ssid: "oakridge"
@@ -35,15 +39,23 @@ i2c:
 
 esp32_ble_tracker:
   scan_parameters:
-    interval: 1100ms
-    window: 1100ms
+    # interval: 1100ms
+    # window: 1100ms
     active: true
 
 bluetooth_proxy:
   active: true
 
+button:
+  - platform: safe_mode
+    name: ${fullname} Safe Mode Boot
+    entity_category: diagnostic
+
+  - platform: restart
+    name: ${fullname} Restart
+
 sensor:
-  - platform: bme280
+  - platform: bme280_i2c
     temperature:
       name: ${fullname} Temperature
       id: bme280_temperature
@@ -90,3 +102,9 @@ sensor:
     name: ${fullname} Illuminance
     address: 0x23
     update_interval: 60s
+
+  # WiFi Signal Sensor
+  - platform: wifi_signal
+    name: "${fullname} WiFi Status"
+    update_interval: 60s
+

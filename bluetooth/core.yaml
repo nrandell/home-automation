@@ -1,0 +1,71 @@
+substitutions:
+  name: ble
+  friendly_name: Bluetooth LE
+
+
+esphome:
+  name: ${name}
+  friendly_name: ${friendly_name}
+  name_add_mac_suffix: true
+  project:
+    name: nick.bluetooth-proxy
+    version: "1.0"
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  domain: .home
+
+api:
+  encryption:
+    key: !secret key
+
+logger:
+
+ota:
+  password: !secret ota_password
+  on_begin:
+    then:
+      - logger.log: "OTA start"
+
+  on_end:
+    then:
+      - logger.log: "OTA end"
+
+  on_error:
+    then:
+      - logger.log:
+          format: "OTA update error %d"
+          args: ["x"]
+
+time:
+  - platform: sntp
+    id: sntp_time
+
+sensor:
+  # WiFi Signal Sensor
+  - platform: wifi_signal
+    name: "${friendly_name} WiFi Status"
+    update_interval: 60s
+
+dashboard_import:
+  package_import_url: github://esphome/firmware/bluetooth-proxy/esp32-generic.yaml@main
+
+esp32_ble_tracker:
+  id: ble_tracker
+  scan_parameters:
+    # We currently use the defaults to ensure Bluetooth
+    # can co-exist with WiFi In the future we may be able to
+    # enable the built-in coexistence logic in ESP-IDF
+    active: true
+
+bluetooth_proxy:
+  active: true
+
+button:
+  - platform: safe_mode
+    name: ${friendly_name} Safe Mode Boot
+    entity_category: diagnostic
+
+  - platform: restart
+    name: ${friendly_name} Restart
