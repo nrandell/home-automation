@@ -44,6 +44,16 @@ time:
   - platform: sntp
     id: sntp_time
 
+sprinkler:
+  - id: timer_sprinkler_ctrlr
+    multiplier_number: Timer multiplier
+    repeat_number: Timer repeat
+
+    valves:
+      - valve_switch: Test valve
+        run_duration_number: Test valve duration
+        valve_switch_id: relay
+
 # Device Specific Config
 binary_sensor:
   # Push Button (Toggles Relay When Pressed)
