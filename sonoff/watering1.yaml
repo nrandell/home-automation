@@ -1,0 +1,13 @@
+substitutions:
+  devicename: watering1
+  fullname: Watering 1
+  relay1: Fruit cage
+  relay1Id: fruit_cage
+  relay4: Greenhouse
+  relay4Id: greenhouse
+  relay3: Tomatoes
+  relay3Id: tomatoes
+  relay2: Vegetables
+  relay2Id: vegetables
+
+<<: !include shared.yaml

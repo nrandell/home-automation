@@ -12,11 +12,110 @@ wifi:
 api:
   encryption:
     key: !secret key
+  
+  services:
+    - service: start_queue
+      then:
+        - sprinkler.start_from_queue:
+            id: ${devicename}_sprinkler
+
+    - service: queue_${relay1Id}_valve
+      then:
+        - sprinkler.queue_valve:
+              id: ${devicename}_sprinkler
+              valve_number: 0
+
+    - service: queue_${relay2Id}_valve
+      then:
+        - sprinkler.queue_valve:
+              id: ${devicename}_sprinkler
+              valve_number: 1
+
+    - service: queue_${relay3Id}_valve
+      then:
+        - sprinkler.queue_valve:
+              id: ${devicename}_sprinkler
+              valve_number: 2
+
+    - service: queue_${relay4Id}_valve
+      then:
+        - sprinkler.queue_valve:
+              id: ${devicename}_sprinkler
+              valve_number: 3
+
 
 logger:
 
 ota:
-  password: !secret ota_password
+  - platform: esphome
+    password: !secret ota_password
+    on_begin:
+      then:
+        - logger.log: "OTA start"
+
+    on_end:
+      then:
+        - logger.log: "OTA end"
+
+    on_error:
+      then:
+        - logger.log:
+            format: "OTA update error %d"
+            args: ["x"]
+
+time:
+  - platform: sntp
+    id: sntp_time
+
+sprinkler:
+  - id: ${devicename}_sprinkler
+    main_switch: "${fullname} sprinklers"
+    auto_advance_switch: "${fullname} auto advance"
+    multiplier_number: "${fullname} multiplier"
+
+    repeat_number: "${fullname} repeat"
+    valve_overlap: 5s
+    valves:
+      - valve_switch: "${relay1} valve"
+        enable_switch: "${relay1} enable"
+        run_duration_number:
+          name: "${relay1} duration"
+          initial_value: 10
+          min_value: 1
+          max_value: 20
+          step: 1
+          unit_of_measurement: min
+        valve_switch_id: relay_1
+      - valve_switch: "${relay2} valve"
+        enable_switch: "${relay2} enable"
+        run_duration_number:
+          name: "${relay2} duration"
+          initial_value: 10
+          min_value: 1
+          max_value: 20
+          step: 1
+          unit_of_measurement: min
+        valve_switch_id: relay_2
+      - valve_switch: "${relay3} valve"
+        enable_switch: "${relay3} enable"
+        run_duration_number:
+          name: "${relay3} duration"
+          initial_value: 10
+          min_value: 1
+          max_value: 20
+          step: 1
+          unit_of_measurement: min
+        valve_switch_id: relay_3
+      - valve_switch: "${relay4} valve"
+        enable_switch: "${relay4} enable"
+        run_duration_number:
+          name: "${relay4} duration"
+          initial_value: 10
+          min_value: 1
+          max_value: 20
+          step: 1
+          unit_of_measurement: min
+        valve_switch_id: relay_4
 
 binary_sensor:
   - platform: gpio
@@ -56,17 +155,25 @@ binary_sensor:
 
 switch:
   - platform: gpio
+    internal: true
     name: "${fullname} Relay 1"
     pin: GPIO12
+    id: relay_1
   - platform: gpio
+    internal: true
     name: "${fullname} Relay 2"
     pin: GPIO5
+    id: relay_2
   - platform: gpio
+    internal: true
     name: "${fullname} Relay 3"
     pin: GPIO4
+    id: relay_3
   - platform: gpio
+    internal: true
     name: "${fullname} Relay 4"
     pin: GPIO15
+    id: relay_4
 
 output:
   # Register the blue LED as a dimmable output ....
