@@ -14,6 +14,16 @@ api:
     key: !secret key
   
   services:
+    - service: start_cycle
+      then:
+        - sprinkler.start_full_cycle:
+            id: ${devicename}_sprinkler
+
+    - service: shutdown
+      then:
+        - sprinkler.shutdown:
+            id: ${devicename}_sprinkler
+
     - service: start_queue
       then:
         - sprinkler.start_from_queue:
