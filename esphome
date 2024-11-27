@@ -3,4 +3,7 @@
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 RUN_DIR=`pwd`
 
+echo "Script dir: $SCRIPT_DIR"
+echo "Run dir: $RUN_DIR"
+
 docker run --privileged -v /dev:/dev --rm -v $RUN_DIR:/config  -v $SCRIPT_DIR/secrets.yaml:/config/secrets.yaml -it ghcr.io/esphome/esphome "$@"
