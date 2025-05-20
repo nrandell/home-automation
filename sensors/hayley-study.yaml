@@ -4,7 +4,8 @@ substitutions:
 
 esphome:
   name: $devicename
-  platform: ESP32
+
+esp32:
   board: wemos_d1_mini32
 
 wifi:
@@ -19,6 +20,7 @@ logger:
   level: info
 
 ota:
+  platform: esphome
   password: !secret ota_password
 
 api:

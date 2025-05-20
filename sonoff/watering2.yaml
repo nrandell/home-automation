@@ -1,5 +1,13 @@
 substitutions:
   devicename: watering2
   fullname: Watering 2
+  relay1: Back
+  relay1Id: back
+  relay2: Spare 1
+  relay2Id: spare1
+  relay3: Car port
+  relay3Id: car_port
+  relay4: Spare 2
+  relay4Id: spare2
 
 <<: !include shared.yaml
